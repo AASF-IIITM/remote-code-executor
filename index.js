@@ -5,7 +5,7 @@ const app = express()
 app.get('/', (req, res) => {
   res.send('Hi!')
 })
-app.get('/', (req, res) => {
-    res.send('hey Poorvi!')
+app.get('/manish', (req, res) => {
+    res.send('hey Manish!')
   })
 app.listen(3000, () => console.log('Server ready'))
