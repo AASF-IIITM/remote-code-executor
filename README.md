@@ -1,14 +1,7 @@
-# Remote-Code-Executor
-RCE is a Remote Code Executor, as the name suggests Is a Docker-based sandbox environment to run a code snippet. It will create a new docker based container for every submitted code, run it in the isolated container, and return the output. It will support major languages C, C++, and can be extended to other language support too.
+# Remote Code Executor
 
-# Features:
-- Backend APIs and logic to handle the submitted code, create a docker container, execute it, and return the results. 
-- Minimal UI for user interaction and code submission.
-- Can be extended to an Online Code Judge and full-fledged coding/interview platform.
-
-# Tech stack: 
-- Node.js
-- Any Frontend framework or Basic HTML 
-- Javascript
-- Docker 
-- Bash scripting.
+- Server Side Code for a Remote Code Executor
+- Mostly boilerplate code
+- For testing purposes
+- Run **docker build -t rceserver:working .**
+- After this run **docker run -p <desired_port>:3000 -d rceserver:working**
