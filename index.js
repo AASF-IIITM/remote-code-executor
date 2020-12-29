@@ -16,7 +16,7 @@ app.post("/execNode", async(req, res)=>{
   const data = req.body.code;
   // console.log(data);
   const output = await execNode(data);
-  // console.log(output);
+  console.log(output);
   res.send(output);
 })
 app.listen(3000, ()=>
