@@ -26,6 +26,7 @@ app.post("/execPython", async(req, res)=>{
   // console.log(data);
   const output = await execPython(data);
   console.log(output);
+  
   res.send(output);
 })
 
