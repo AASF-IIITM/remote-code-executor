@@ -4,8 +4,8 @@ const fs = require("fs");
 
 const execPromise = (command) => new Promise((resolve, reject) => {
     exec(command, function(error, stdout, stderr) {
-        // console.log(stdout, stderr,error);
-        if(error) reject(error);
+        // console.log(stdout, stderr, error);
+        if(error) reject(JSON.stringify(error, Object.getOwnPropertyNames(error)));
         else {
             const isError = Boolean(stderr);
             resolve({ isError, output: stdout || stderr });
@@ -28,4 +28,4 @@ const deleteFilePromise = (location) => new Promise((resolve, reject) => {
 })
 
 
-module.exports = {  execPromise, writeFilePromise, deleteFilePromise };
+module.exports = { execPromise, writeFilePromise, deleteFilePromise };
