@@ -12,7 +12,7 @@ const execNode = async (data) => {
   const filePath = __dirname + `/temp/${filename}.js`;
   try {
     await writeFilePromise(filePath, data);
-    const output = await execPromise(`node utils/temp/${filename}.js`, {
+    const output = await execPromise(`node ./utils/temp/${filename}.js`, {
       timeout: 2000,
       maxBuffer: 1024 * 1024 * 5,
     });
@@ -32,7 +32,7 @@ const execCpp = async (data) => {
   try {
     await writeFilePromise(filePath, data);
     await execPromise(
-      `g++ -o utils/temp/${filename} utils/temp/${filename}.cpp`
+      `g++ -o ./utils/temp/${filename} ./utils/temp/${filename}.cpp`
     );
     const output = await execPromise(`./utils/temp/${filename}`, {
       timeout: 2000,
