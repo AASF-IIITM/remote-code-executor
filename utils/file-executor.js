@@ -1,17 +1,26 @@
 const { exec } = require("child_process");
 const fs = require("fs");
 
-const execPromise = (command) =>
+const execPromise = (command, noBuffer = false) =>
   new Promise((resolve, reject) => {
-    exec(command, params, function (error, stdout, stderr) {
-      // console.log(stdout, stderr, error);
-      if (error)
-        reject(JSON.stringify(error, Object.getOwnPropertyNames(error)));
-      else {
-        const isError = Boolean(stderr);
-        resolve({ isError, output: stdout || stderr });
+    exec(
+      command,
+      noBuffer
+        ? {}
+        : {
+            timeout: 2000,
+            maxBuffer: 1024 * 1024 * 5,
+          },
+      function (error, stdout, stderr) {
+        // console.log(stdout, stderr, error);
+        if (error)
+          reject(JSON.stringify(error, Object.getOwnPropertyNames(error)));
+        else {
+          const isError = Boolean(stderr);
+          resolve({ isError, output: stdout || stderr });
+        }
       }
-    });
+    );
   });
 
 const writeFilePromise = (location, data) =>
