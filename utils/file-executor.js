@@ -3,7 +3,7 @@ const fs = require("fs");
 
 
 const execPromise = (command) => new Promise((resolve, reject) => {
-    exec(command, function(error, stdout, stderr) {
+    exec(command, { timeout: 2000, maxBuffer: 1024 * 1024 * 5 }, function(error, stdout, stderr) {
         // console.log(stdout, stderr, error);
         if(error) reject(JSON.stringify(error, Object.getOwnPropertyNames(error)));
         else {
