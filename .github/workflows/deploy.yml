@@ -29,4 +29,4 @@ jobs:
           echo "$EC2_KEY" >> $HOME/key.pem
           chmod 400 $HOME/key.pem
       - name: Update image on server
-        run: ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ubuntu@52.206.192.83 './deploy.sh'
+        run: ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ubuntu@3.139.253.83 './deploy.sh'
