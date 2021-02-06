@@ -1,0 +1,32 @@
+on:
+  release:
+    types: [created]
+
+name: Deploy to Production
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: poorvivaish/rce
+          tags: latest
+
+      - name: Setup key
+        id: setup-key
+        env:
+          EC2_KEY: ${{ secrets.EC2_KEY }}
+        run: |
+          echo "$EC2_KEY" >> $HOME/key.pem
+          chmod 400 $HOME/key.pem
+      - name: Update image on server
+        run: ssh -i $HOME/key.pem -o StrictHostKeyChecking=no ubuntu@3.139.253.83 './deploy.sh'
