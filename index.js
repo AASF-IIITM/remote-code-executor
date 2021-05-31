@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { execNode, execPython, execCpp } = require("./utils/executor");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
@@ -16,15 +16,17 @@ app.get("/", (req, res) => {
 });
 app.post("/execNode", async (req, res) => {
   const data = req.body.code;
+  const input = req.body.input;
   // console.log(data);
-  const output = await execNode(data);
+  const output = await execNode(data, input || "");
   console.log(output);
   res.send(output);
 });
 app.post("/execPython", async (req, res) => {
   const data = req.body.code;
+  const input = req.body.input;
   // console.log(data);
-  const output = await execPython(data);
+  const output = await execPython(data, input || "");
   console.log(output);
 
   res.send(output);
@@ -32,8 +34,9 @@ app.post("/execPython", async (req, res) => {
 
 app.post("/execCpp", async (req, res) => {
   const data = req.body.code;
+  const input = req.body.input;
   // console.log(data);
-  const output = await execCpp(data);
+  const output = await execCpp(data, input ||"");
   console.log(output);
   res.send(output);
 });

@@ -12,7 +12,7 @@ const execPromise = (command, noBuffer = false) =>
             maxBuffer: 1024 * 1024 * 5,
           },
       function (error, stdout, stderr) {
-        // console.log(stdout, stderr, error);
+        console.log(stdout, stderr, error);
         if (error)
           reject(JSON.stringify(error, Object.getOwnPropertyNames(error)));
         else {
